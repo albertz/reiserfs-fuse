@@ -24,3 +24,10 @@
 #endif
 
 #define GRUB_TARGET_SIZEOF_VOID_P SIZEOF_VOID_P
+
+#define grub_printf printf
+#define grub_malloc malloc
+#define grub_free free
+#define grub_memcmp memcmp
+#define grub_strcmp strcmp
+#define grub_memcpy memcpy

@@ -30,12 +30,14 @@
 # define GRUB_HEXDUMP
 #endif
 
+#define GRUB_DISK_SECTOR_BITS	9
+#define GRUB_DISK_SECTOR_SIZE	0x200
+
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <grub/err.h>
 #include <grub/file.h>
-#include <grub/mm.h>
-#include <grub/misc.h>
-#include <grub/disk.h>
-#include <grub/dl.h>
 #include <grub/types.h>
 #include <grub/fshelp.h>
 
@@ -60,9 +62,7 @@
 
 #define S_IFLNK 0xA000
 
-static grub_dl_t my_mod;
-
-#define assert(boolean) real_assert (boolean, GRUB_FILE, __LINE__)
+#define assert(boolean) real_assert (boolean, __FILE__, __LINE__)
 static inline void
 real_assert (int boolean, const char *file, const int line)
 {
@@ -225,6 +225,10 @@ struct grub_fshelp_node
   enum grub_reiserfs_item_type type; /* To know how to read the header.  */
   struct grub_reiserfs_item_header header;
 };
+
+// TODO: needed?
+typedef void* grub_disk_t;
+typedef void* grub_device_t;
 
 /* Returned when opening a file.  */
 struct grub_reiserfs_data
@@ -985,7 +989,6 @@ grub_reiserfs_open (struct grub_file *file, const char *name)
   grub_uint32_t block_number;
   grub_uint16_t entry_version, block_size, entry_location;
 
-  grub_dl_ref (my_mod);
   data = grub_reiserfs_mount (file->device->disk);
   if (! data)
     goto fail;
@@ -1058,7 +1061,6 @@ grub_reiserfs_open (struct grub_file *file, const char *name)
   assert (grub_errno != GRUB_ERR_NONE);
   grub_free (found);
   grub_free (data);
-  grub_dl_unref (my_mod);
   return grub_errno;
 }
 
@@ -1114,13 +1116,13 @@ grub_reiserfs_read (grub_file_t file, char *buf, grub_size_t len)
                             "Reading direct block %u from %u to %u...\n",
                             (unsigned) block, (unsigned) offset,
                             (unsigned) (offset + length));
-              found.data->disk->read_hook = file->read_hook;
+             // found.data->disk->read_hook = file->read_hook;
               grub_disk_read (found.data->disk,
                               block,
                               offset
                               + grub_le_to_cpu16 (found.header.item_location),
                               length, buf);
-              found.data->disk->read_hook = 0;
+           //   found.data->disk->read_hook = 0;
               if (grub_errno)
                 goto fail;
               buf += length;
@@ -1140,7 +1142,7 @@ grub_reiserfs_read (grub_file_t file, char *buf, grub_size_t len)
                           item_size, indirect_block_ptr);
           if (grub_errno)
             goto fail;
-          found.data->disk->read_hook = file->read_hook;
+          //found.data->disk->read_hook = file->read_hook;
           for (indirect_block = 0;
                indirect_block < indirect_block_count
                  && current_position < final_position;
@@ -1175,7 +1177,7 @@ grub_reiserfs_read (grub_file_t file, char *buf, grub_size_t len)
               else
                 current_position += block_size;
             }
-          found.data->disk->read_hook = 0;
+         // found.data->disk->read_hook = 0;
           grub_free (indirect_block_ptr);
           indirect_block_ptr = 0;
           break;
@@ -1251,7 +1253,6 @@ grub_reiserfs_close (grub_file_t file)
 
   grub_free (data);
   grub_free (node);
-  grub_dl_unref (my_mod);
   return GRUB_ERR_NONE;
 }
 
@@ -1283,7 +1284,6 @@ grub_reiserfs_dir (grub_device_t device, const char *path,
   struct grub_fshelp_node root, *found;
   struct grub_reiserfs_key root_key;
 
-  grub_dl_ref (my_mod);
   data = grub_reiserfs_mount (device->disk);
   if (! data)
     goto fail;
@@ -1306,12 +1306,10 @@ grub_reiserfs_dir (grub_device_t device, const char *path,
 	grub_reiserfs_dir_iterate_hook = hook;
   grub_reiserfs_iterate_dir (found, grub_reiserfs_dir_iterate);
   grub_free (data);
-  grub_dl_unref (my_mod);
   return GRUB_ERR_NONE;
 
  fail:
   grub_free (data);
-  grub_dl_unref (my_mod);
   return grub_errno;
 }
 
@@ -1338,8 +1336,6 @@ grub_reiserfs_uuid (grub_device_t device, char **uuid)
   struct grub_reiserfs_data *data;
   grub_disk_t disk = device->disk;
 
-  grub_dl_ref (my_mod);
-
   data = grub_reiserfs_mount (disk);
   if (data)
     {
@@ -1356,32 +1352,12 @@ grub_reiserfs_uuid (grub_device_t device, char **uuid)
   else
     *uuid = NULL;
 
-  grub_dl_unref (my_mod);
-
   grub_free (data);
 
   return grub_errno;
 }
 
-static struct grub_fs grub_reiserfs_fs =
-  {
-    .name = "reiserfs",
-    .dir = grub_reiserfs_dir,
-    .open = grub_reiserfs_open,
-    .read = grub_reiserfs_read,
-    .close = grub_reiserfs_close,
-    .label = grub_reiserfs_label,
-    .uuid = grub_reiserfs_uuid,
-    .next = 0
-  };
 
-GRUB_MOD_INIT(reiserfs)
-{
-  grub_fs_register (&grub_reiserfs_fs);
-  my_mod = mod;
-}
-
-GRUB_MOD_FINI(reiserfs)
-{
-  grub_fs_unregister (&grub_reiserfs_fs);
+int main(int argc, char** argv) {
+	
 }
