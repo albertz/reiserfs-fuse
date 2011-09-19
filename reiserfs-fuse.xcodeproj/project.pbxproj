@@ -1,0 +1,223 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		239A137F1426C54D005AF013 /* reiserfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 239A137E1426C54D005AF013 /* reiserfs.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		239A13651426C500005AF013 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		239A13671426C500005AF013 /* reiserfs-fuse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "reiserfs-fuse"; sourceTree = BUILT_PRODUCTS_DIR; };
+		239A13781426C54D005AF013 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		239A137A1426C54D005AF013 /* err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = err.h; sourceTree = "<group>"; };
+		239A137B1426C54D005AF013 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
+		239A137C1426C54D005AF013 /* symbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symbol.h; sourceTree = "<group>"; };
+		239A137D1426C54D005AF013 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		239A137E1426C54D005AF013 /* reiserfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = reiserfs.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		239A13641426C500005AF013 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		239A135C1426C500005AF013 = {
+			isa = PBXGroup;
+			children = (
+				239A13811426C558005AF013 /* source */,
+				239A13681426C500005AF013 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		239A13681426C500005AF013 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				239A13671426C500005AF013 /* reiserfs-fuse */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		239A13791426C54D005AF013 /* grub */ = {
+			isa = PBXGroup;
+			children = (
+				239A137A1426C54D005AF013 /* err.h */,
+				239A137B1426C54D005AF013 /* file.h */,
+				239A137C1426C54D005AF013 /* symbol.h */,
+				239A137D1426C54D005AF013 /* types.h */,
+			);
+			path = grub;
+			sourceTree = "<group>";
+		};
+		239A13811426C558005AF013 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				239A13791426C54D005AF013 /* grub */,
+				239A13781426C54D005AF013 /* config.h */,
+				239A137E1426C54D005AF013 /* reiserfs.c */,
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		239A13661426C500005AF013 /* reiserfs-fuse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 239A13711426C500005AF013 /* Build configuration list for PBXNativeTarget "reiserfs-fuse" */;
+			buildPhases = (
+				239A13631426C500005AF013 /* Sources */,
+				239A13641426C500005AF013 /* Frameworks */,
+				239A13651426C500005AF013 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "reiserfs-fuse";
+			productName = "reiserfs-fuse";
+			productReference = 239A13671426C500005AF013 /* reiserfs-fuse */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		239A135E1426C500005AF013 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Albert Zeyer";
+			};
+			buildConfigurationList = 239A13611426C500005AF013 /* Build configuration list for PBXProject "reiserfs-fuse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 239A135C1426C500005AF013;
+			productRefGroup = 239A13681426C500005AF013 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				239A13661426C500005AF013 /* reiserfs-fuse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		239A13631426C500005AF013 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				239A137F1426C54D005AF013 /* reiserfs.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		239A136F1426C500005AF013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		239A13701426C500005AF013 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		239A13721426C500005AF013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = .;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		239A13731426C500005AF013 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = .;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		239A13611426C500005AF013 /* Build configuration list for PBXProject "reiserfs-fuse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				239A136F1426C500005AF013 /* Debug */,
+				239A13701426C500005AF013 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		239A13711426C500005AF013 /* Build configuration list for PBXNativeTarget "reiserfs-fuse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				239A13721426C500005AF013 /* Debug */,
+				239A13731426C500005AF013 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 239A135E1426C500005AF013 /* Project object */;
+}
