@@ -21,18 +21,10 @@
 
 #include <grub/types.h>
 #include <grub/err.h>
-#include <grub/device.h>
-#include <grub/fs.h>
 
 /* File description.  */
 struct grub_file
 {
-  /* The underlying device.  */
-  grub_device_t device;
-
-  /* The underlying filesystem.  */
-  grub_fs_t fs;
-
   /* The current offset.  */
   grub_off_t offset;
 
